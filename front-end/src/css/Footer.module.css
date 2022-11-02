@@ -1,0 +1,9 @@
+.Footer {
+    padding: 0;
+    margin: 0;
+    height: 20%;
+    min-height: 100px;
+    max-height: 200px;
+    background-color: darkslategray;
+    border-top: 5px solid black;
+}
