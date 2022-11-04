@@ -1,9 +1,64 @@
+.FooterArea {
+    height: 20%;
+}
+
 .Footer {
     padding: 0;
     margin: 0;
-    height: 20%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     min-height: 100px;
     max-height: 200px;
     background-color: darkslategray;
     border-top: 5px solid black;
+    align-items: center;
+}
+
+.FooterLead {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.FooterLead > h3 {
+    margin: 0;
+    margin-top: 1%;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: aliceblue;
+}
+
+.FooterButtonsArea {
+    display: flex;
+    height: 40%;
+    width: 100%;
+    margin-top: 1%;
+    justify-content: center;
+}
+
+.FooterButtons {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.FooterButtons > button {
+    background-color: transparent;
+    border: none;
+    color: aliceblue;
+    font-size: 1rem;
+    padding: 1%;
+    margin: 1%;
+}
+
+.FooterButtons > button:hover {
+    color: aqua;
+}
+
+.FooterAddress {
+    font-size: 1rem;
+    color: aliceblue;
+    align-items: flex-end;
 }
