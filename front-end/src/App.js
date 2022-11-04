@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/structure/Header';
 import Footer from './components/structure/Footer';
 import LandingPage from './components/pages/LandingPage';
+import QuickVerbPage from './components/pages/QuickVerbPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <div className='MainBody'>
           <Routes>
             <Route path='/' element={<LandingPage />} />
+            <Route path='/quickVerb' element={<QuickVerbPage />} />
           </Routes>
         </div>
         <Footer />
