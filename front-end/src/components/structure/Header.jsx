@@ -7,9 +7,15 @@ const Header = () => {
 
     return (
         <div className={style.Header}>
-            <h1 onClick={() => navigator("/")}>HUBL</h1>
-            <div>
-                <button onClick={() => navigator("/quickVerb")}>ConjuVerb!</button>
+            <div className={style.HeaderLogo}>
+                <h1 onClick={() => navigator("/")}>HUBL</h1>
+            </div>
+            <div className={style.ButtonArea}>
+                <button onClick={() => navigator("/quickVerb")}>Quick Verb</button>
+                <button onClick={() => navigator("/quickVerb")}>SecondButton</button>
+                <button onClick={() => navigator("/quickVerb")}>ThirdButton</button>
+                <button onClick={() => navigator("/quickVerb")}>FourthButton</button>
+
             </div>
         </div>
     )
