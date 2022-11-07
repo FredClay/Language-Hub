@@ -5,6 +5,7 @@ import Header from './components/structure/Header';
 import Footer from './components/structure/Footer';
 import LandingPage from './components/pages/LandingPage';
 import QuickVerbPage from './components/pages/QuickVerbPage';
+import AboutPage from './components/pages/AboutPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div className='MainBody'>
           <Routes>
             <Route path='/' element={<LandingPage />} />
+            <Route path='/aboutUs' element={<AboutPage />} />
             <Route path='/quickVerb' element={<QuickVerbPage />} />
           </Routes>
         </div>

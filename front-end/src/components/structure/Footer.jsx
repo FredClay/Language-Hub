@@ -1,7 +1,11 @@
 import style from '../../css/Footer.module.css';
 
+import { useNavigate } from 'react-router-dom';
+
 const Footer = () => {
 
+    const navigator = useNavigate();
+    
     return (
         <div className={style.FooterArea}>
             <div className={style.Footer}>
@@ -11,7 +15,7 @@ const Footer = () => {
                 <div className={style.FooterButtonsArea}>
                     <div className={style.FooterButtons}>
                         <button>Contact</button>
-                        <button>About</button>
+                        <button onClick={() => navigator('aboutUs')}>About</button>
                         <button>Careers</button>
                     </div>
                 </div>
