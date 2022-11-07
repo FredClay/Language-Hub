@@ -8,13 +8,13 @@ const Header = () => {
     return (
         <div className={style.Header}>
             <div className={style.HeaderLogo}>
-                <h1 onClick={() => navigator("/")}>HUBL</h1>
+                <img alt='logo' src='./HUBL Small Design.png' onClick={() => navigator('/')}/>
             </div>
             <div className={style.ButtonArea}>
                 <button onClick={() => navigator("/quickVerb")}>Quick Verb</button>
-                <button onClick={() => navigator("/quickVerb")}>SecondButton</button>
-                <button onClick={() => navigator("/quickVerb")}>ThirdButton</button>
-                <button onClick={() => navigator("/quickVerb")}>FourthButton</button>
+                <button onClick={() => navigator("/lessonZone")}>Lesson Zone</button>
+                <button onClick={() => navigator("/aboutUs")}>About HUBL</button>
+                <button onClick={() => navigator("/unspecified")}>FourthButton</button>
 
             </div>
         </div>
