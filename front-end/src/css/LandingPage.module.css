@@ -1,0 +1,54 @@
+.LandingPage {
+    display: flex;
+    width: 100%;
+    min-height: 80vh;
+}
+
+.IntroSection {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 3%;
+    border-right: 5px solid;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.IntroSection > h1 {
+    font-size: 350%;
+}
+
+.IntroSection > p {
+    font-size: 2rem;
+}
+
+.OldOrNew {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    padding-left: 3%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.OldOrNew > h2 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.OldOrNew > button {
+    font-size: 1.4rem;
+    padding: 1%;
+    border-radius: 10px;
+    background-color: greenyellow;
+    transition-duration: 0.3s;
+}
+
+.OldOrNew > button:hover {
+    color: aliceblue;
+    background-color: green;
+}

@@ -1,0 +1,27 @@
+.NotFound {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.SadText {
+    width: 70%;
+    padding-bottom: 5%;
+}
+
+.ImageSection {
+    width: 50%;
+    height: 50%;
+}
+
+.ImageSection > img {
+    width: 50%;
+    height: 50%;
+}
+
+.ImageSection > h2 {
+    font-weight: 400;
+}
