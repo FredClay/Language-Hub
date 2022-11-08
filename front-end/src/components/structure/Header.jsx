@@ -15,7 +15,11 @@ const Header = () => {
                 <button onClick={() => navigator("/lessonZone")}>Lesson Zone</button>
                 <button onClick={() => navigator("/aboutUs")}>About HUBL</button>
                 <button onClick={() => navigator("/unspecified")}>FourthButton</button>
-
+            </div>
+            <div className={style.LoginArea}>
+                <div className={style.UserIcon} onClick={() => navigator('/signIn')}>
+                    <p>FC</p>
+                </div>
             </div>
         </div>
     )

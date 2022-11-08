@@ -4,6 +4,7 @@ import './App.css';
 import Header from './components/structure/Header';
 import Footer from './components/structure/Footer';
 import LandingPage from './components/pages/LandingPage';
+import SignInPage from './components/pages/SignInPage';
 import QuickVerbPage from './components/pages/QuickVerbPage';
 import AboutPage from './components/pages/AboutPage';
 import NotFoundPage from './components/pages/NotFoundPage';
@@ -17,6 +18,7 @@ function App() {
         <div className='MainBody'>
           <Routes>
             <Route path='/' element={<LandingPage />} />
+            <Route path='/signIn' element={<SignInPage />} />
             <Route path='/aboutUs' element={<AboutPage />} />
             <Route path='/quickVerb' element={<QuickVerbPage />} />
             <Route path='/hublCareers' element={<CareersPage />} />
