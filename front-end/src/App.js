@@ -7,6 +7,7 @@ import LandingPage from './components/pages/LandingPage';
 import QuickVerbPage from './components/pages/QuickVerbPage';
 import AboutPage from './components/pages/AboutPage';
 import NotFoundPage from './components/pages/NotFoundPage';
+import CareersPage from './components/pages/CareersPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path='/' element={<LandingPage />} />
             <Route path='/aboutUs' element={<AboutPage />} />
             <Route path='/quickVerb' element={<QuickVerbPage />} />
+            <Route path='/hublCareers' element={<CareersPage />} />
             <Route path='/*' element={<NotFoundPage />} />
           </Routes>
         </div>
