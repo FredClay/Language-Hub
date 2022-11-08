@@ -16,7 +16,7 @@ const Footer = () => {
                     <div className={style.FooterButtons}>
                         <button>Contact</button>
                         <button onClick={() => navigator('aboutUs')}>About</button>
-                        <button>Careers</button>
+                        <button onClick={() => navigator('hublCareers')}>Careers</button>
                     </div>
                 </div>
                 <div className={style.FooterAddress}>

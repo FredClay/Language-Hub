@@ -9,17 +9,20 @@
 
 .SadText {
     width: 70%;
-    padding-bottom: 5%;
 }
 
 .ImageSection {
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
 }
 
 .ImageSection > img {
-    width: 50%;
-    height: 50%;
+    width: 25%;
+    height: 80%;
+}
+
+.ImageSection > img:hover {
+    cursor: pointer;
 }
 
 .ImageSection > h2 {
