@@ -5,7 +5,7 @@ const AboutPage = () => {
             <h1>Image will go here!</h1>
             <h1>What is HUBL?</h1>
             <p>Founded in 2022, HUBL is a free language learning platform with a focus on letting students learn via their preferred methods. HUBL's founder, Fred Clay, 
-                wanted to share his passion for learning and software development with the world, and so HUBL was born! Due to rising frustrations with the job market, 
+                wanted to share his passion for learning and software development with the world, and so HUBL was born! Due to rising difficulties in the job market, 
                 Fred built this MERN stack web app to showcase his skills, and hopefully gain meaningful employment with a company that recognises hard work and dedication!</p>
             <h1>How do I use the HUBL platform?</h1>
             <p>HUBL is currently completely free to use! If you're new to a particular language, try one of our 'Intro to ...' lessons. It will introduce you to your chosen 
