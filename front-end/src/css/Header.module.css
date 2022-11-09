@@ -6,7 +6,7 @@
     min-height: 100px;
     max-height: 150px;
     display: flex;
-    background-color: midnightblue;
+    background-color: darkcyan;
     border-bottom: 8px solid black;
     box-shadow: 0px 0px 5px 4px rgb(0, 0, 0, 0.7);
     z-index: 100;

@@ -1,57 +1,53 @@
-.SignInPage {
+.SignUpPage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 70vh;
+    min-height: 70vh;
+    padding-bottom: 5%;
 }
 
-.SignInForm {
+.SignUpForm {
     display: flex;
     flex-direction: column;
+    background-color: darkslateblue;
     padding: 4%;
     padding-top: 3%;
     padding-bottom: 2%;
-    margin-top: 1%;
+    color: aliceblue;
+    margin-top: 3%;
     border-radius: 15px;
     border: 6px solid black;
-    background-color: darkslateblue;
     box-shadow: 3px 3px 15px black;
 }
 
-.FormTopText{
-    align-self: center;
-    width: 100%;
-    color: aliceblue;
-    font-size: 1.25rem;
-    font-weight: 500;
-    text-align: center;
-    padding-bottom: 2%;
-    border-bottom: 2px solid white;
-    margin-bottom: 5%;
-}
-
-.FormTopText > p {
-    margin: 0;
-}
-
-.SignInForm > label {
+.SignUpForm > label {
     color: aliceblue;
     padding-bottom: 1%;
     font-size: 1.2rem;
     font-weight: 500;
 }
 
-.SignInForm > input {
+.SignUpForm > input {
     padding: 2%;
     font-size: 1rem;
     border: 2px solid black;
     outline: none;
 }
 
-.SignInForm > input:focus {
+.SignUpForm > input:focus {
     box-shadow: inset 0px 0px 5px black;
     border-color: aliceblue;
+}
+
+.FormTopText {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 5%;
+    border-bottom: 2px solid white;
+}
+
+.FormTopText > p {
+    margin: 0;
 }
 
 .FormButton {
@@ -80,14 +76,14 @@
     background-color: green;
 }
 
-.SignInExtras {
+.SignUpExtras {
     text-align: center;
 }
 
-.SignInExtras > p > a {
+.SignUpExtras > p > a {
     color: blue;
 }
 
-.SignInExtras > p > a:hover {
+.SignUpExtras > p > a:hover {
     color: cornflowerblue;
 }
