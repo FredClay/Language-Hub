@@ -22,6 +22,10 @@ const UserLoginSchema = new Schema({
         type: String,
         require: true,
     },
+    emailAddress: {
+        type: String,
+        require: true,
+    },
     userScore: {
         type: Number,
         default: 0,
