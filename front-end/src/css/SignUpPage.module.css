@@ -87,3 +87,25 @@
 .SignUpExtras > p > a:hover {
     color: cornflowerblue;
 }
+
+.SignedUp {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    justify-content: center;
+}
+
+.SignedUp > p {
+    text-align: center;
+    font-size: 3rem;
+    margin: 0;
+}
+
+.SignedUp > p > a {
+    font-size: 2rem;
+    color: blue;
+}
+
+.SignedUp > p > a:hover {
+    color: cornflowerblue;
+}
