@@ -50,10 +50,10 @@ const SignUpPage = () => {
                     <input id='userEmailAddress' type='text' value={emailAddress} onChange={(e) => setEmailAddress(e.target.value)}></input>
                     <br />
                     <label htmlFor='userUsername'>Username: </label>
-                    <input id='userUsername' type='text' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    <input id='userUsername' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
                     <br />
                     <label htmlFor='userPassword'>Password (8 characters or more): </label>
-                    <input id='userPassword' type='text' min='8' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                    <input id='userPassword' type='text' min='8' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     <div className={style.FormButton}>
                         <button type='submit' onClick={(e) => addNewUser(e)}>Sign Up</button>
                     </div>

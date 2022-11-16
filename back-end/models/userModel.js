@@ -26,7 +26,7 @@ const UserLoginSchema = new Schema({
         type: String,
         require: true,
     },
-    userScore: {
+    userExperience: {
         type: Number,
         default: 0,
     }
