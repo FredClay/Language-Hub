@@ -10,6 +10,7 @@ import AboutPage from './components/pages/AboutPage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import CareersPage from './components/pages/CareersPage';
 import SignUpPage from './components/pages/SignUpPage';
+import VocabZone from './components/pages/VocabZone';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/signIn' element={<SignInPage />} />
             <Route path='/signUp' element={<SignUpPage />} />
             <Route path='/aboutUs' element={<AboutPage />} />
+            <Route path='/vocabZone' element={<VocabZone />} />
             <Route path='/quickVerb' element={<QuickVerbPage />} />
             <Route path='/hublCareers' element={<CareersPage />} />
             <Route path='/*' element={<NotFoundPage />} />
