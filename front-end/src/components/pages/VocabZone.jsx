@@ -46,12 +46,12 @@ const VocabZone = () => {
         </div>
     )};
     
-    switch (selectedCategory) {
-        case 'Adjectives':
-            return(<AdjectivePractice count={selectedQuantity} />)
-        default:
-            return <p>Seems like that category doesn't have functionality yet.</p>;
-    }
+
+    return (
+        <div className={style.VocabTestZone}>
+            <AdjectivePractice count={selectedQuantity} category={selectedCategory.toLowerCase()}/>
+        </div>
+    )
 
 };
 

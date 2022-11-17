@@ -71,3 +71,11 @@
     font-size: 1.4rem;
     margin: 0;
 }
+
+.VocabTestZone {
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+    align-items: center;
+    background-color: brown;
+}

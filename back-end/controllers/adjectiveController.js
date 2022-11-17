@@ -22,8 +22,10 @@ router.get('/getAll', (req, res, next) => {
         .catch((err) => next(err));
 });
 
-router.get('/getSelection', (req, res, next) => {
-    Adjective.aggregate([ { $sample: { size: 10 } } ])
+router.get('/getSelection/:count', (req, res, next) => {
+    const intCount = parseInt(req.params.count);
+    
+    Adjective.aggregate([ { $sample: { size: intCount } } ])
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 })

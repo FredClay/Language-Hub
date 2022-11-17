@@ -1,0 +1,15 @@
+.AdjectiveZone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: darkgoldenrod;
+    margin: 2%;
+    border-radius: 12px;
+    border: 5px solid black;
+    width: 80%;
+}
+
+.AdjectiveZone > button {
+    width: 20%;
+    margin: 2%;
+}
