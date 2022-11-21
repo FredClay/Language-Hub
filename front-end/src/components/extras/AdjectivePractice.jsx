@@ -15,6 +15,7 @@ const AdjectivePractice = ( props ) => {
         possibleScore: 0
     });
 
+    const [getWordsFailed, setGetWordsFailed] = useState(false);
     const [currentQ, setCurrentQ] = useState(0);
     const [wordList, setWordList] = useState([]);
 
@@ -28,7 +29,7 @@ const AdjectivePractice = ( props ) => {
             setCurrentQ(0);
             setThisState({...thisState, underway: true, possibleScore: thisState.possibleScore+ parseInt(count)});
         })
-        .catch(err => console.log(err));
+        .catch(() => setGetWordsFailed(true));
 
     };
 
@@ -54,10 +55,17 @@ const AdjectivePractice = ( props ) => {
     
     return (
         <div className={style.AdjectiveZone}>
-            <div>
-                <button type='button' onClick={() => window.location.reload()}>Back to selection screen</button>
-                <button type='button' onClick={() => beginExercise()}>Begin!</button>
+            <div className={style.topArea}>
+                <div className={style.buttonArea}>
+                    <button type='button' onClick={() => window.location.reload()}>Change Selection</button>
+                    <button type='button' onClick={() => beginExercise()}>{(thisState.underway) ? 'Get New Words' : 'Begin!'}</button>
+                </div>
+                <div className={style.infoZone}>
+                    <h3><u>Current Selection</u></h3>
+                    <h3>{count} {category.toUpperCase()}</h3>
+                </div>
             </div>
+            {getWordsFailed && <><h1>OH NO!</h1><h2 style={{'textAlign': 'center'}}>It seems like we couldn't locate the resource you've selected.<br/>Please try a different category, or get in touch to report a problem!</h2></>}
             {wordList[0] !== undefined && <TranslationPrinter indexer={questionIndexer} correcter={setCorrect} thisWord={wordList[currentQ]} currentIndex={currentQ} 
                 sessionInfo={{count: count, maxPossible: thisState.possibleScore, category: category}}/>}
         </div>

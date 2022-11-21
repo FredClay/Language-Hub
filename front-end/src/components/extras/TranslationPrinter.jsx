@@ -22,24 +22,40 @@ const TranslationPrinter = ( props ) => {
         indexer(increment);
         setEnteredText('');
     };
+
+    // const handleKeyDown = (e) => {
+    //     if (e.keyCode === 37) {
+    //         indexShouldClearInput(-1)
+    //     }
+    //     else if (e.keyCode === 39) {
+    //         indexShouldClearInput(1)
+    //     }
+    // }
     
     return (
         <div className={style.TranslationZone}>
             <div className={style.ScoreSection}>
                 <h2>{category.toUpperCase()}</h2>
-                <h2>{scoreThisRound + '/' + maxPossible}</h2>
+                <h2>Total Score: {scoreThisRound + '/' + maxPossible}</h2>
             </div>
-            <h2>Question {currentIndex} of {count}</h2>
+            <h2>Question {currentIndex + 1} of {count}</h2>
             <div className={style.InteractiveArea}>
                 <button className={style.DirectionButton} onClick={() => indexShouldClearInput(-1)}>{'<'}</button>
                 <div className={style.MiddleSection}>
-                    
-                    {(!solved) ? <><h1>{english}</h1>
-                    <input type='text' max='20' value={enteredText} onChange={(e) => setEnteredText(e.target.value)}></input></> :
-                    <p>Correct!<br />{english} is <br />{german}!</p>}
+                    {(!solved) ? 
+                    //if unsolved ->
+                    <>
+                        <h1>{english}</h1>
+                        <input type='text' max='20' value={enteredText} onChange={(e) => setEnteredText(e.target.value)}></input>
+                    </> :
+                    // if solved ->    
+                    <>
+                        <h1>{english}</h1>
+                        <h1 style={{'color': 'greenyellow'}}>{german}</h1>
+                    </>}
 
                 </div>
-                <button className={style.DirectionButton} onClick={() => indexShouldClearInput(+1)}>{'>'}</button>
+                <button className={style.DirectionButton} onClick={() => indexShouldClearInput(1)}>{'>'}</button>
             </div>
         </div>
     );
