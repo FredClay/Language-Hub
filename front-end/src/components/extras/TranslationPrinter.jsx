@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 const TranslationPrinter = ( props ) => {
-    const { thisWord, indexer, sessionInfo, correcter, currentIndex } = props;
+    const { thisWord, indexer, sessionInfo, correcter, currentIndex, fullMarks } = props;
     const {english, german, solved } = thisWord;
     const { count, maxPossible, category } = sessionInfo;
 
@@ -12,25 +12,29 @@ const TranslationPrinter = ( props ) => {
     const [enteredText, setEnteredText] = useState('');
 
     useEffect(() => {
+        setEnteredText('');
+    }, [german])
+    
+    useEffect(() => {
         if (enteredText === german) {
-            correcter();
-            setScoreThisRound(scoreThisRound + 1)
+            setScoreThisRound(scoreThisRound + 1);
+            if (scoreThisRound === count) {
+                return;
+            }
+            correcter();           
+            setTimeout(() => {
+                indexer(0);
+            }, 1000)
         }
     }, [enteredText, german]);
-
-    const indexShouldClearInput = (increment) => {
-        indexer(increment);
-        setEnteredText('');
-    };
-
-    // const handleKeyDown = (e) => {
-    //     if (e.keyCode === 37) {
-    //         indexShouldClearInput(-1)
-    //     }
-    //     else if (e.keyCode === 39) {
-    //         indexShouldClearInput(1)
-    //     }
-    // }
+    
+    if (fullMarks) {
+        return (
+            <div>
+                <p>Great work!</p>
+            </div>
+        )
+    }
     
     return (
         <div className={style.TranslationZone}>
@@ -38,15 +42,15 @@ const TranslationPrinter = ( props ) => {
                 <h2>{category.toUpperCase()}</h2>
                 <h2>Total Score: {scoreThisRound + '/' + maxPossible}</h2>
             </div>
-            <h2>Question {currentIndex + 1} of {count}</h2>
+            <h2>Question {parseInt(currentIndex) + 1} of {count}</h2>
             <div className={style.InteractiveArea}>
-                <button className={style.DirectionButton} onClick={() => indexShouldClearInput(-1)}>{'<'}</button>
+                <button className={style.DirectionButton} onClick={() => indexer(-1)}>{'<'}</button>
                 <div className={style.MiddleSection}>
                     {(!solved) ? 
                     //if unsolved ->
                     <>
                         <h1>{english}</h1>
-                        <input type='text' max='20' value={enteredText} onChange={(e) => setEnteredText(e.target.value)}></input>
+                        <input type='text' autoFocus max='20' value={enteredText} onChange={(e) => setEnteredText(e.target.value)}></input>
                     </> :
                     // if solved ->    
                     <>
@@ -55,7 +59,7 @@ const TranslationPrinter = ( props ) => {
                     </>}
 
                 </div>
-                <button className={style.DirectionButton} onClick={() => indexShouldClearInput(1)}>{'>'}</button>
+                <button className={style.DirectionButton} onClick={() => indexer(1)}>{'>'}</button>
             </div>
         </div>
     );
