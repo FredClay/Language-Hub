@@ -7,7 +7,7 @@ import AdjectivePractice from '../extras/AdjectivePractice';
 const VocabZone = () => {
 
     const availableCategories = ['Adjectives', 'Nouns', 'Verbs'];
-    const availableQuantities = ['5', '10', '15'];
+    const availableQuantities = ['2', '5', '10', '15'];
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState('');
