@@ -1,0 +1,29 @@
+.AboutZone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #090538;
+    color: aliceblue;
+    padding-top: 3%;
+    padding-bottom: 5%;
+}
+
+.QuestionBlock {
+    width: 80%;
+    padding: 2%;
+    margin: 1%;
+    border-radius: 10px;
+    border: 5px solid aqua;
+    text-align: center;
+}
+
+.QuestionBlock > h1 {
+    font-size: 2.4rem;
+    margin: 0;
+    color: aqua;
+}
+
+.QuestionBlock > p {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
