@@ -12,9 +12,9 @@ const Header = () => {
             </div>
             <div className={style.ButtonArea}>
                 <button onClick={() => navigator("/quickVerb")}>Quick Verb</button>
+                <button onClick={() => navigator("/vocabZone")}>Vocab Zone</button>
                 <button onClick={() => navigator("/lessonZone")}>Lesson Zone</button>
                 <button onClick={() => navigator("/aboutUs")}>About HUBL</button>
-                <button onClick={() => navigator("/vocabZone")}>Vocab Zone</button>
             </div>
             <div className={style.LoginArea}>
                 <div className={style.UserIcon} onClick={() => navigator('/signIn')}>
