@@ -2,14 +2,28 @@ import style from '../../css/TranslationPrinter.module.css';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
+import VocabMidSection from './VocabMidSection';
 
 const TranslationPrinter = ( props ) => {
-    const { thisWord, indexer, sessionInfo, correcter, currentIndex, fullMarks } = props;
-    const {english, german, solved } = thisWord;
-    const { count, maxPossible, category } = sessionInfo;
+    const { thisWord, indexer, sessionInfo, correcter, passer, ender, currentIndex, fullMarks } = props;
+    const {english, german, solved, passed } = thisWord;
+    const { count, category } = sessionInfo;
 
     const [scoreThisRound, setScoreThisRound] = useState(0);
     const [enteredText, setEnteredText] = useState('');
+    const [displaySituation, setDisplaySituation] = useState('unsolved');
+
+    useEffect(() => {
+        if (!solved && !passed) {
+            setDisplaySituation('unsolved');
+        }
+        else if (passed) {
+            setDisplaySituation('passed');
+        }
+        else {
+            setDisplaySituation('correct');
+        }
+    }, [solved, passed])
 
     useEffect(() => {
         setEnteredText('');
@@ -31,7 +45,8 @@ const TranslationPrinter = ( props ) => {
     if (fullMarks) {
         return (
             <div>
-                <p>Great work!</p>
+                <h1>Great work!</h1>
+                <p>You got {scoreThisRound} / {count} right!</p>
             </div>
         )
     }
@@ -40,27 +55,21 @@ const TranslationPrinter = ( props ) => {
         <div className={style.TranslationZone}>
             <div className={style.ScoreSection}>
                 <h2>{category.toUpperCase()}</h2>
-                <h2>Total Score: {scoreThisRound + '/' + maxPossible}</h2>
+                <h2>Total Score: {scoreThisRound + '/' + count}</h2>
             </div>
             <h2>Question {parseInt(currentIndex) + 1} of {count}</h2>
             <div className={style.InteractiveArea}>
                 <button className={style.DirectionButton} onClick={() => indexer(-1)}>{'<'}</button>
-                <div className={style.MiddleSection}>
-                    {(!solved) ? 
-                    //if unsolved ->
-                    <>
-                        <h1>{english}</h1>
-                        <input type='text' autoFocus max='20' value={enteredText} onChange={(e) => setEnteredText(e.target.value)}></input>
-                    </> :
-                    // if solved ->    
-                    <>
-                        <h1>{english}</h1>
-                        <h1 style={{'color': 'greenyellow'}}>{german}</h1>
-                    </>}
-
+                <div className={style.MiddleSection}>                   
+                    <VocabMidSection displaySituation={displaySituation} text={enteredText} setText={setEnteredText} english={english} german={german} />
                 </div>
                 <button className={style.DirectionButton} onClick={() => indexer(1)}>{'>'}</button>
             </div>
+            <div className={style.bottomSection}>
+                <button className={style.passButton} onClick={() => passer()}>Pass Question</button>
+                <button onClick={() => indexer(0)}>Find Next Unsolved</button>
+            </div>
+            <button className={style.sessionButton} onClick={() => ender()}>End Session</button>
         </div>
     );
 };

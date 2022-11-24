@@ -35,6 +35,7 @@
     text-align: center;
     width: 90%;
     height: 25vh;
+    border-bottom: 2px solid black;
 }
 
 .MiddleSection > p {
@@ -64,4 +65,38 @@
     transition-duration: 0.5s;
     color: aliceblue;
     background-color: black;
+}
+
+.bottomSection {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    margin-bottom: 2%;
+}
+
+.bottomSection > button {
+    height: 20%;
+    font-size: 1.5rem;
+    margin: 2%;
+    border-radius: 10px;
+    background-color: darkblue;
+    color: aliceblue;
+}
+
+.bottomSection > button:hover {
+    transition-duration: 0.5s;
+    color: aliceblue;
+    background-color: black;
+}
+
+.sessionButton {
+    border-radius: 10px;
+    font-size: 1.3rem;
+    background-color: red;
+    color: aliceblue;
+}
+
+.sessionButton:hover {
+    box-shadow: 0px 0px 5px inset black;
 }
