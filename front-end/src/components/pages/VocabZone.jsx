@@ -16,7 +16,6 @@ const VocabZone = () => {
 
     const pressedBegin = () => {
         if (selectedCategory === '' || selectedQuantity === '') {
-            console.log("FIRING!");
             setInvalidSelection(true);
         }
         else {

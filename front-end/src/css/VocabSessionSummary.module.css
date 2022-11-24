@@ -1,0 +1,48 @@
+.SummaryZone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    background-color: darkslateblue;
+    color: aliceblue;
+    border-radius: 12px;
+    border: 5px solid black;
+    margin: 5%;
+}
+
+.TopSection {
+    width: 80%;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid black;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.questionSection {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+}
+
+.correct {
+    height: 20%;
+    font-size: 1.4rem;
+    color: greenyellow;
+}
+
+.incorrect {
+    height: 20%;
+    font-size: 1.4rem;
+    color: red;
+}
+
+.questionSection > div > p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.TopSection > h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+}

@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 
 import TranslationPrinter from "./TranslationPrinter";
+import VocabSessionSummary from './VocabSessionSummary';
 
 const AdjectivePractice = ( props ) => {
     
@@ -25,21 +26,38 @@ const AdjectivePractice = ( props ) => {
         .get(`http://localhost:5000/${category}/getSelection/${count}`)
         .then(res => {
             const words = res.data;
-            words.map((data, solved) => ({...data, solved: false}))
-            setWordList(res.data);
+            const updatedWords = words.map((data, solved) => ({...data, solved: false, passed: false}))
+            setWordList(updatedWords);
             setCurrentQ(0);
             setFullMarks(false);
-            setThisState({...thisState, underway: true, possibleScore: thisState.possibleScore+ parseInt(count)});
+            setThisState({...thisState, underway: true, possibleScore: thisState.possibleScore + parseInt(count)});
         })
         .catch(() => setGetWordsFailed(true));
+    };
 
+    const endExercise = () => {
+        for (const word of wordList) {
+            if (!word.solved) {
+                word.passed = true;
+            }
+        }
+        findNextUnsolved();
     };
 
     const setCorrect = () => {
         const focusWord = wordList[currentQ];
         focusWord['solved'] = true;
         setWordList([...wordList.slice(0, currentQ), focusWord, ...wordList.slice(currentQ + 1, wordList.length)])
-    }
+    };
+
+    const setPass = () => {
+        const focusWord = wordList[currentQ];
+        focusWord['passed'] = true;
+        setWordList([...wordList.slice(0, currentQ), focusWord, ...wordList.slice(currentQ + 1, wordList.length)])
+        setTimeout(() => {
+            questionIndexer(0);
+        }, 1000)
+    };
 
     const questionIndexer = (increment) => {
         const listLen = wordList.length;
@@ -63,7 +81,7 @@ const AdjectivePractice = ( props ) => {
         const currentPos = currentQ;
         let unsolved = [];
         for (let word in wordList) {
-            if (!wordList[word].solved) {
+            if (!(wordList[word].solved || wordList[word].passed)) {
                 unsolved.push(word);
             }
         }
@@ -73,11 +91,10 @@ const AdjectivePractice = ( props ) => {
         }
         const maxOfArray = Math.max(...unsolved);
         if (maxOfArray < currentPos) {
-            setCurrentQ(unsolved[0]);
+            setCurrentQ(parseInt(unsolved[0]));
         }
         else {
-            let gThan = unsolved.filter(num => num > currentPos);
-            console.log(gThan[0]);
+            let gThan = unsolved.filter(num => num >= currentPos);
             setCurrentQ(parseInt(gThan[0]));
         }
     }
@@ -87,7 +104,8 @@ const AdjectivePractice = ( props ) => {
             <div className={style.topArea}>
                 <div className={style.buttonArea}>
                     <button type='button' onClick={() => window.location.reload()}>Change Selection</button>
-                    <button type='button' onClick={() => beginExercise()}>{(thisState.underway) ? 'Get New Words' : 'Begin!'}</button>
+                    {(!thisState.underway) && <button type='button' onClick={() => beginExercise()}>{'Begin!'}</button>}
+                    {(fullMarks) && <button type='button' onClick={() => beginExercise()}>{'Start New Round'}</button>}
                 </div>
                 <div className={style.infoZone}>
                     <h3><u>Current Selection</u></h3>
@@ -95,8 +113,9 @@ const AdjectivePractice = ( props ) => {
                 </div>
             </div>
             {getWordsFailed && <><h1>OH NO!</h1><h2 style={{'textAlign': 'center'}}>It seems like we couldn't locate the resource you've selected.<br/>Please try a different category, or get in touch to report a problem!</h2></>}
-            {wordList[0] !== undefined && <TranslationPrinter indexer={questionIndexer} correcter={setCorrect} fullMarks={fullMarks} thisWord={wordList[currentQ]} 
-                currentIndex={currentQ} sessionInfo={{count: count, maxPossible: thisState.possibleScore, category: category}}/>}
+            {(fullMarks) && <VocabSessionSummary wordList={wordList}/> }
+            {(!fullMarks && wordList[0] !== undefined) && <TranslationPrinter indexer={questionIndexer} correcter={setCorrect} passer={setPass} ender={endExercise} 
+                fullMarks={fullMarks} thisWord={wordList[currentQ]} currentIndex={currentQ} sessionInfo={{count: count, category: category}}/>}
         </div>
     );
 
