@@ -8,7 +8,7 @@ const AdjectiveSchema = new Schema({
         type: String,
         require: true,
     },
-    german: {
+    translation: {
         type: String,
         require: true,
     },

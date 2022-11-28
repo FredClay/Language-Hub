@@ -22,13 +22,19 @@ router.get('/getAll', (req, res, next) => {
         .catch((err) => next(err));
 });
 
+router.get('/getAllPretty', (req, res, next) => {
+    Adjective.find({}, {"english": true, "translation": true})
+        .then((result) => res.status(200).json(result))
+        .catch((err) => next(err));
+});
+
 router.get('/getSelection/:count', (req, res, next) => {
     const intCount = parseInt(req.params.count);
     
     Adjective.aggregate([ { $sample: { size: intCount } } ])
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
-})
+});
 
 router.delete('/deleteAdjective/:_id', (req, res, next) => {
     const { _id } = req.params;

@@ -8,7 +8,7 @@ import VocabSessionSummary from './VocabSessionSummary';
 
 const AdjectivePractice = ( props ) => {
     
-    const { count, category } = props;
+    const { count, category, toEnglish } = props;
     const [fullMarks, setFullMarks] = useState(false);
 
     const [thisState, setThisState] = useState({
@@ -25,8 +25,14 @@ const AdjectivePractice = ( props ) => {
         axios
         .get(`http://localhost:5000/${category}/getSelection/${count}`)
         .then(res => {
-            const words = res.data;
-            const updatedWords = words.map((data, solved) => ({...data, solved: false, passed: false}))
+            const words = res.data;            
+            let updatedWords;
+            if (toEnglish) {
+                updatedWords = words.map((data) => ({...data, english: data.translation, translation: data.english, solved: false, passed: false}))
+            }
+            else {
+                updatedWords = words.map((data) => ({...data, solved: false, passed: false}))
+            }
             setWordList(updatedWords);
             setCurrentQ(0);
             setFullMarks(false);

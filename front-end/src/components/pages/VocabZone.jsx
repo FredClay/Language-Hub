@@ -11,6 +11,7 @@ const VocabZone = () => {
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState('');
+    const [toEnglish, setToEnglish] = useState(true);
     const [chosen, setChosen] = useState(false);
     const [invalidSelection, setInvalidSelection] = useState(false)
 
@@ -39,6 +40,17 @@ const VocabZone = () => {
                     <option value=''>Question Count</option>
                     {availableQuantities.map(quant => <option key={quant} value={quant}>{quant}</option>)}
                 </select>
+                <div className={style.languageOptions}>
+                    <h3>Translate to:</h3>
+                    <div className={style.sliderArea}>
+                        <h3>English</h3>
+                        <label className={style.switch}>
+                            <input type='checkbox'></input>
+                            <span className={[style.slider, style.round].join(" ")} onClick={() => setToEnglish(!toEnglish)}></span>
+                        </label>
+                        <h3>German</h3>
+                    </div>
+                </div>
                 {invalidSelection && <p className={style.ErrorMessage}>Please select a category and quantity to continue</p>}
                 <button type='button' onClick={() => pressedBegin()}>Begin!</button>
             </div>
@@ -48,7 +60,7 @@ const VocabZone = () => {
 
     return (
         <div className={style.VocabTestZone}>
-            <AdjectivePractice count={selectedQuantity} category={selectedCategory.toLowerCase()}/>
+            <AdjectivePractice count={selectedQuantity} category={selectedCategory.toLowerCase()} toEnglish={toEnglish}/>
         </div>
     )
 

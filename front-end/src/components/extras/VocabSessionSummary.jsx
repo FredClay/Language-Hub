@@ -9,7 +9,7 @@ const VocabSessionSummary = ({ wordList }) => {
 
         return (
             <div className={style.correct} key={key}>
-                <p>{`${key + 1}: ${word.english} = ${word.german}`}</p>
+                <p>{`${key + 1}: ${word.english} = ${word.translation}`}</p>
             </div>
         );
     };
@@ -17,7 +17,7 @@ const VocabSessionSummary = ({ wordList }) => {
     const displayPassed = (word, key) => {
         return (
             <div className={style.incorrect} key={key}>
-                <p>{`${key + 1}: ${word.english} = ${word.german}`}</p>
+                <p>{`${key + 1}: ${word.english} = ${word.translation}`}</p>
             </div>
         );
     }

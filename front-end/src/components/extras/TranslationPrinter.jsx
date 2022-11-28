@@ -6,7 +6,7 @@ import LanguageCharacters from './LanguageCharacters';
 
 const TranslationPrinter = ( props ) => {
     const { thisWord, indexer, sessionInfo, correcter, passer, ender, currentIndex, fullMarks } = props;
-    const {english, german, solved, passed } = thisWord;
+    const {english, translation, solved, passed } = thisWord;
     const { count, category } = sessionInfo;
 
     const [scoreThisRound, setScoreThisRound] = useState(0);
@@ -27,10 +27,10 @@ const TranslationPrinter = ( props ) => {
 
     useEffect(() => {
         setEnteredText('');
-    }, [german])
+    }, [translation])
     
     useEffect(() => {
-        if (enteredText === german) {
+        if (enteredText === translation) {
             setScoreThisRound(scoreThisRound + 1);
             if (scoreThisRound === count) {
                 return;
@@ -40,7 +40,7 @@ const TranslationPrinter = ( props ) => {
                 indexer(0);
             }, 1000)
         }
-    }, [enteredText, german]);
+    }, [enteredText, translation]);
 
     const charButtonInterpreter = (input) => {
         setEnteredText(enteredText + String.fromCharCode(input));
@@ -66,7 +66,7 @@ const TranslationPrinter = ( props ) => {
                 <div className={style.InteractiveArea}>
                     <button className={style.DirectionButton} onClick={() => indexer(-1)}>{'<'}</button>
                     <div className={style.MiddleSection}>                   
-                        <VocabMidSection displaySituation={displaySituation} text={enteredText} setText={setEnteredText} english={english} german={german} />
+                        <VocabMidSection displaySituation={displaySituation} text={enteredText} setText={setEnteredText} english={english} translation={translation} />
                     </div>
                     <button className={style.DirectionButton} onClick={() => indexer(1)}>{'>'}</button>
                 </div>
