@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-// Vocab Model
-const VocabSchema = new Schema({
+// Noun Model
+const NounSchema = new Schema({
     english: {
         type: String,
         require: true,
     },
     translation: {
+        type: String,
+        require: true,
+    },
+    gender: {
         type: String,
         require: true,
     },
@@ -18,6 +22,6 @@ const VocabSchema = new Schema({
     }
 });
 
-const Adjective = mongoose.model('adjectives', VocabSchema);
+const Noun = mongoose.model('nouns', NounSchema);
 
-module.exports = {Adjective};
+module.exports = {Noun};
