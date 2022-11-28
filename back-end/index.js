@@ -27,6 +27,9 @@ app.use('/userDetails', userRoutes);
 const adjectiveRoutes = require('./controllers/adjectiveController');
 app.use('/adjectives', adjectiveRoutes);
 
+const nounRoutes = require('./controllers/nounController');
+app.use('/nouns', nounRoutes);
+
 app.get('/greeting', (req, res) => {
     res.send("Hello from LanguageHub!")
 });

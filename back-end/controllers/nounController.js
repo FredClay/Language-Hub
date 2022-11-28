@@ -1,29 +1,29 @@
 const router = require('express').Router();
 
-const {Adjective} = require('../models/adjectiveModel');
+const {Noun} = require('../models/nounModel');
 
-router.post('/addAdjective', (req, res, next) => {
-    Adjective.create(req.body)
+router.post('/addNoun', (req, res, next) => {
+    Noun.create(req.body)
         .then((result) => res.status(201).json(result))
         .catch((err) => next(err));
 });
 
-router.get('/getAdjective/:_id', (req, res, next) => {
+router.get('/getNoun/:_id', (req, res, next) => {
     const { _id } = req.params;
     
-    Adjective.find({ _id: _id })
+    Noun.find({ _id: _id })
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });
 
 router.get('/getAll', (req, res, next) => {
-    Adjective.find({})
+    Noun.find({})
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });
 
 router.get('/getAllPretty', (req, res, next) => {
-    Adjective.find({}, {"english": true, "translation": true})
+    Noun.find({}, {"english": true, "translation": true})
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });
@@ -31,21 +31,21 @@ router.get('/getAllPretty', (req, res, next) => {
 router.get('/getSelection/:count', (req, res, next) => {
     const intCount = parseInt(req.params.count);
     
-    Adjective.aggregate([ { $sample: { size: intCount } } ])
+    Noun.aggregate([ { $sample: { size: intCount } } ])
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });
 
-router.delete('/deleteAdjective/:_id', (req, res, next) => {
+router.delete('/deleteNoun/:_id', (req, res, next) => {
     const { _id } = req.params;
 
-    Adjective.findOneAndDelete({ _id: _id})
+    Noun.findOneAndDelete({ _id: _id})
         .then((result) => res.status(204).json(result))
         .catch((err) => next(err));
 });
 
-router.delete('/deleteAllAdjectives', (req, res, next) => {
-    Adjective.deleteMany({})
+router.delete('/deleteAllNouns', (req, res, next) => {
+    Noun.deleteMany({})
         .then((result) => res.status(204).json(result))
         .catch((err) => next(err));
 })
