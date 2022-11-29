@@ -5,8 +5,8 @@ import VocabMidSection from './VocabMidSection';
 import LanguageCharacters from './LanguageCharacters';
 
 const TranslationPrinter = ( props ) => {
-    const { thisWord, indexer, sessionInfo, correcter, passer, ender, currentIndex, fullMarks } = props;
-    const {english, translation, solved, passed } = thisWord;
+    const { thisWord, indexer, sessionInfo, correcter, passer, ender, currentIndex, toEnglish } = props;
+    const {english, translation, gender, solved, passed } = thisWord;
     const { count, category } = sessionInfo;
 
     const [scoreThisRound, setScoreThisRound] = useState(0);
@@ -26,11 +26,16 @@ const TranslationPrinter = ( props ) => {
     }, [solved, passed])
 
     useEffect(() => {
-        setEnteredText('');
+        if (toEnglish && category === 'nouns') {
+            setEnteredText('the ')
+        }
+        else {
+            setEnteredText('');
+        }
     }, [translation])
     
     useEffect(() => {
-        if (enteredText === translation) {
+        if (enteredText.toLowerCase() === translation.toLowerCase()) {
             setScoreThisRound(scoreThisRound + 1);
             if (scoreThisRound === count) {
                 return;
@@ -46,14 +51,12 @@ const TranslationPrinter = ( props ) => {
         setEnteredText(enteredText + String.fromCharCode(input));
     }
     
-    if (fullMarks) {
-        return (
-            <div>
-                <h1>Great work!</h1>
-                <p>You got {scoreThisRound} / {count} right!</p>
-            </div>
+    
+    if (thisWord === undefined) {
+        return(
+            <p>It's all completely hopeless</p>
         )
-    }
+    };
     
     return (
         <div className={style.MainZone}>
@@ -66,7 +69,7 @@ const TranslationPrinter = ( props ) => {
                 <div className={style.InteractiveArea}>
                     <button className={style.DirectionButton} onClick={() => indexer(-1)}>{'<'}</button>
                     <div className={style.MiddleSection}>                   
-                        <VocabMidSection displaySituation={displaySituation} text={enteredText} setText={setEnteredText} english={english} translation={translation} />
+                        <VocabMidSection displaySituation={displaySituation} text={enteredText} setText={setEnteredText} english={english} translation={translation} gender={gender}/>
                     </div>
                     <button className={style.DirectionButton} onClick={() => indexer(1)}>{'>'}</button>
                 </div>
