@@ -8,7 +8,7 @@ import VocabSessionSummary from './VocabSessionSummary';
 
 const VocabSessionControl = ( props ) => {
     
-    const { count, category, toEnglish } = props;
+    const { count, topic, category, toEnglish } = props;
     const [fullMarks, setFullMarks] = useState(false);
     const [underway, setUnderway] = useState(false);
 
@@ -23,7 +23,7 @@ const VocabSessionControl = ( props ) => {
 
     const beginExercise = () => {
         axios
-        .get(`http://localhost:5000/${category}/getSelection/${count}`)
+        .get(axiosGetFormatter())
         .then(res => {
             const words = res.data;            
             if (category === 'nouns') {
@@ -43,6 +43,17 @@ const VocabSessionControl = ( props ) => {
         .catch(() => setGetWordsFailed(true));
     };
 
+    const axiosGetFormatter = () => {
+        let searchString;
+        if (category === 'Nouns') {
+            searchString = `http://localhost:5000/${category}/${topic}/getSelection/${count}`;
+        }
+        else {
+            searchString = `http://localhost:5000/${category}/getSelection/${count}`;
+        }
+        return searchString;
+    }
+    
     const formatWord = (inputWord) => {
         const language = 'german';
         let translatedThe;
