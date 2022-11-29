@@ -7,6 +7,7 @@ const NounSchema = new Schema({
     english: {
         type: String,
         require: true,
+        default: "BANANA"
     },
     translation: {
         type: String,
@@ -22,6 +23,17 @@ const NounSchema = new Schema({
     }
 });
 
-const Noun = mongoose.model('nouns', NounSchema);
+const NounCategorySchema = new Schema({
+    topicName: {
+        type: String,
+        require: true,
+    },
+    theNouns: {
+        type: [NounSchema]
+    }
+})
 
-module.exports = {Noun};
+const Noun = mongoose.model('singleNoun', NounSchema);
+const NounCategory = mongoose.model('nouns', NounCategorySchema);
+
+module.exports = {Noun, NounCategory};
