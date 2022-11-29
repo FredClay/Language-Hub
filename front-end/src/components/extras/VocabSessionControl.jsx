@@ -6,13 +6,13 @@ import { useState } from "react";
 import TranslationPrinter from "./TranslationPrinter";
 import VocabSessionSummary from './VocabSessionSummary';
 
-const AdjectivePractice = ( props ) => {
+const VocabSessionControl = ( props ) => {
     
     const { count, category, toEnglish } = props;
     const [fullMarks, setFullMarks] = useState(false);
+    const [underway, setUnderway] = useState(false);
 
     const [thisState, setThisState] = useState({
-        underway: false,
         currentScore: 0,
         possibleScore: 0
     });
@@ -26,20 +26,52 @@ const AdjectivePractice = ( props ) => {
         .get(`http://localhost:5000/${category}/getSelection/${count}`)
         .then(res => {
             const words = res.data;            
-            let updatedWords;
-            if (toEnglish) {
-                updatedWords = words.map((data) => ({...data, english: data.translation, translation: data.english, solved: false, passed: false}))
-            }
-            else {
-                updatedWords = words.map((data) => ({...data, solved: false, passed: false}))
-            }
-            setWordList(updatedWords);
+            if (category === 'nouns') {
+                for (const word in words) {
+                    let thisWord = words[word];
+                    words[word] = formatWord(thisWord);
+                }
+            }            
+            setWordList(words);
             setCurrentQ(0);
             setFullMarks(false);
-            setThisState({...thisState, underway: true, possibleScore: thisState.possibleScore + parseInt(count)});
+            setThisState({...thisState, possibleScore: thisState.possibleScore + parseInt(count)});
+        })
+        .then(() => {
+            setUnderway(true);
         })
         .catch(() => setGetWordsFailed(true));
     };
+
+    const formatWord = (inputWord) => {
+        const language = 'german';
+        let translatedThe;
+        if (language === 'german') {
+            switch (inputWord.gender) {
+                case 'm':
+                    translatedThe = 'der ';
+                    break;
+                case 'f':
+                    translatedThe = 'die ';
+                    break;
+                case 'n':
+                    translatedThe = 'das ';
+                    break;
+                default:
+                    translatedThe = '';
+            }
+        }
+        inputWord.english = "the " + inputWord.english;
+        inputWord.translation = translatedThe + inputWord.translation;
+
+        if (toEnglish) {
+            inputWord = {...inputWord, english: inputWord.translation, translation: inputWord.english, solved: false, passed: false}
+        }
+        else {
+            inputWord = {...inputWord, solved: false, passed: false};
+        }
+        return inputWord;
+    }
 
     const endExercise = () => {
         for (const word of wordList) {
@@ -110,7 +142,7 @@ const AdjectivePractice = ( props ) => {
             <div className={style.topArea}>
                 <div className={style.buttonArea}>
                     <button type='button' onClick={() => window.location.reload()}>Change Selection</button>
-                    {(!thisState.underway) && <button type='button' onClick={() => beginExercise()}>{'Begin!'}</button>}
+                    {(!underway) && <button type='button' onClick={() => beginExercise()}>{'Begin!'}</button>}
                     {(fullMarks) && <button type='button' onClick={() => beginExercise()}>{'Start New Round'}</button>}
                 </div>
                 <div className={style.infoZone}>
@@ -120,11 +152,11 @@ const AdjectivePractice = ( props ) => {
             </div>
             {getWordsFailed && <><h1>OH NO!</h1><h2 style={{'textAlign': 'center'}}>It seems like we couldn't locate the resource you've selected.<br/>Please try a different category, or get in touch to report a problem!</h2></>}
             {(fullMarks) && <VocabSessionSummary wordList={wordList}/> }
-            {(!fullMarks && wordList[0] !== undefined) && <TranslationPrinter indexer={questionIndexer} correcter={setCorrect} passer={setPass} ender={endExercise} 
-                fullMarks={fullMarks} thisWord={wordList[currentQ]} currentIndex={currentQ} sessionInfo={{count: count, category: category}}/>}
+            {(!fullMarks && underway) && <TranslationPrinter indexer={questionIndexer} correcter={setCorrect} passer={setPass} ender={endExercise} toEnglish={toEnglish}
+                thisWord={wordList[currentQ]} currentIndex={currentQ} sessionInfo={{count: count, category: category}}/>}
         </div>
     );
 
 };
 
-export default AdjectivePractice;
+export default VocabSessionControl;

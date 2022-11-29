@@ -7,7 +7,7 @@ const LanguageCharacters = ( { buttonListener } ) => {
     return (
         <div className={style.ButtonsZone}>
             <div className={style.TheButtons}>
-                {germanCharacters.map(char => <button onClick={() => buttonListener(char)}>{String.fromCharCode(char)}</button>)}
+                {germanCharacters.map((char, index) => <button key={index} onClick={() => buttonListener(char)}>{String.fromCharCode(char)}</button>)}
             </div>
             <h3>The above buttons allow you to add special characters to your answer!</h3>
         </div>

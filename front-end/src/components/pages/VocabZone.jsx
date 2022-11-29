@@ -2,7 +2,7 @@ import style from '../../css/VocabZone.module.css';
 
 import { useState } from 'react';
 
-import AdjectivePractice from '../extras/AdjectivePractice';
+import VocabSessionControl from '../extras/VocabSessionControl';
 
 const VocabZone = () => {
 
@@ -60,7 +60,8 @@ const VocabZone = () => {
 
     return (
         <div className={style.VocabTestZone}>
-            <AdjectivePractice count={selectedQuantity} category={selectedCategory.toLowerCase()} toEnglish={toEnglish}/>
+            
+            <VocabSessionControl count={selectedQuantity} category={selectedCategory.toLowerCase()} toEnglish={toEnglish}/>
         </div>
     )
 
