@@ -13,9 +13,9 @@ const LandingPage = () => {
                 <p>This site intends to sharpen up your language skills by putting you in control of how and what you learn.</p>
             </div>
             <div className={style.OldOrNew}>
-                <h2>If you're new here, the 'About' section in the header can point you in the right direction.<br /><br />Alternatively, if you want to dive straight into a lesson - 
+                <h2>If you're new here, the 'About HUBL' section in the header is a great place to start.<br /><br />Alternatively, if you want to dive straight into some vocab - 
                 click below!</h2>
-                <button onClick={() => navigator('/lessonZone')}>Let's Learn!</button>
+                <button onClick={() => navigator('/vocabZone')}>Let's Learn!</button>
             </div>
         </div>
     )

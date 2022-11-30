@@ -12,10 +12,10 @@ const AboutPage = () => {
             </div>
             <div className={style.QuestionBlock}>
                 <h1>How do I use the HUBL platform?</h1>
-                <p>HUBL is currently completely free to use! If you're new to a particular language, try one of our 'Intro to ...' lessons. It will introduce you to your chosen 
+                <p>If you're new to a particular language, try one of our 'Intro to ...' lessons. It will introduce you to your chosen 
                     language and culture, and start you off with a few beginner questions. If you're looking for a particular lesson, simply choose the language and topic you would like 
-                    to learn/revise, and HUBL will launch you straight into a lesson!<br /><br />HUBL also has great tools, such as 'QuickVerb' that can help you revise verb conjugations, 
-                    or 'LingoWars' where you can try and set highscores and show off your wicked language skills to the world!<br /><br />The beauty of HUBL is that there is no wrong 
+                    to learn/revise, and HUBL will launch you straight into a lesson!<br /><br />HUBL also has great tools, such as 'The Vocab Zone' that can help you revise verb conjugations, 
+                    or 'Flashcard Builder' where you can create your own vocab sets to practice the trickiest words!<br /><br />The beauty of HUBL is that there is no wrong 
                     way to use HUBL! Simply explore the site and learn to your heart's content!</p>
             </div>
             <div className={style.QuestionBlock}>
@@ -25,9 +25,8 @@ const AboutPage = () => {
             </div>
             <div className={style.QuestionBlock}>
                 <h1>What to do if a question or exercise suggests the wrong answer?</h1>
-                <p>If a question tries to offer you an incorrect solution, then firstly we would like to apologise! But secondly, there will be a small alarm bell present next to 
-                    the question. If you click on it, our team will be notified of the issue and will investigate. A text box will also pop up in case you want to let us know what the 
-                    issue is.<br /><br />We're always working to make HUBL a better place to learn, and your feedback is invaluable to us!</p>
+                <p>If a question tries to offer you an incorrect solution, then firstly we would like to apologise! But secondly, there will be a small flag present next to 
+                    the question. If you click on it, our team will be notified of the issue and will investigate.<br /><br />We're always working to make HUBL a better place to learn, and your feedback is invaluable to us!</p>
             </div>
         </div>
     );
