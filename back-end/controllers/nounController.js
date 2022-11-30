@@ -30,7 +30,7 @@ router.get('/getNoun/:_id', (req, res, next) => {
 });
 
 router.get('/getAll', (req, res, next) => {
-    NounCategory.find({}, {"theNouns": true})
+    NounCategory.find({})
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });
@@ -41,13 +41,24 @@ router.get('/getAllPretty', (req, res, next) => {
         .catch((err) => next(err));
 });
 
+router.get('/getTopicNouns/:topic', (req, res, next) => {
+    const { topic } = req.params;
+    
+    NounCategory.findOne({topicName: topic})
+        .then((result) => {res.status(200).json(result.theNouns)})
+        .catch((err) => next(err));
+})
+
 router.get('/getSelection/:topic/:count', (req, res, next) => {
     const { topic, count } = req.params;
     const intCount = parseInt(count);
     
-    const thisDocument = NounCategory.findOne({topicName: topic});
-    
-    thisDocument.theNouns.aggregate([ { $sample: { size: intCount } } ])
+    NounCategory.aggregate([ 
+        {$match: {formattedName: topic}},
+        {$unwind: "$theNouns"},
+        {$sample: { size: intCount } }
+    ])
+        .then((result) => myArray = result.map((thisOne) => thisOne.theNouns))
         .then((result) => res.status(200).json(result))
         .catch((err) => next(err));
 });

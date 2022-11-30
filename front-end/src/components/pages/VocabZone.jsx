@@ -79,9 +79,8 @@ const VocabZone = () => {
     
 
     return (
-        <div className={style.VocabTestZone}>
-            
-            <VocabSessionControl count={selectedQuantity} topic={selectedTopic} category={selectedCategory.toLowerCase()} toEnglish={toEnglish}/>
+        <div className={style.VocabTestZone}>            
+            <VocabSessionControl count={selectedQuantity} topic={selectedTopic.toLowerCase()} category={selectedCategory.toLowerCase()} toEnglish={toEnglish}/>
         </div>
     )
 
