@@ -45,8 +45,9 @@ const VocabSessionControl = ( props ) => {
 
     const axiosGetFormatter = () => {
         let searchString;
-        if (category === 'Nouns') {
-            searchString = `http://localhost:5000/${category}/${topic}/getSelection/${count}`;
+        let formatTopic = topic.replace(" ", "");
+        if (category === 'nouns') {
+            searchString = `http://localhost:5000/${category}/getSelection/${formatTopic}/${count}`;
         }
         else {
             searchString = `http://localhost:5000/${category}/getSelection/${count}`;
