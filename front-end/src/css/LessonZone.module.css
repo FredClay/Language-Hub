@@ -1,0 +1,33 @@
+.LessonZone {
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+    align-items: center;
+    color: aliceblue;
+}
+
+.IntroSection {
+    width: 50%;
+    padding-top: 2%;
+    padding-bottom: 1%;
+    text-align: center;
+    border-bottom: 3px solid aliceblue;
+}
+
+.IntroSection > h1, h2 {
+    margin: 0;
+}
+
+.AvailableLessons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2%;
+    margin-bottom: 3%;
+    padding-top: 1%;
+    min-height: 90vh;
+    width: 85%;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px inset black;
+    background-color: midnightblue;
+}

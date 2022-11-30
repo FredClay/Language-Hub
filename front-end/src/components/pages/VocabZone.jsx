@@ -14,13 +14,13 @@ const VocabZone = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState('');
     const [displayTopicBox, setDisplayTopicBox] = useState(false);
-    const [selectedTopic, setSelectedTopic] = useState('none');
+    const [selectedTopic, setSelectedTopic] = useState('');
     const [toEnglish, setToEnglish] = useState(true);
     const [chosen, setChosen] = useState(false);
     const [invalidSelection, setInvalidSelection] = useState(false)
 
     const pressedBegin = () => {
-        if (selectedCategory === '' || selectedQuantity === '') {
+        if (!selectedCategory || !selectedQuantity || (displayTopicBox && !selectedTopic)) {
             setInvalidSelection(true);
         }
         else {
@@ -52,7 +52,7 @@ const VocabZone = () => {
                 </select>
                 {(displayTopicBox) && 
                     <select id='chooseQuantity' className={style.optionalSelection} onChange={(e) => setSelectedTopic(e.target.value)}>
-                        <option value='none'>Select Topic</option>
+                        <option value=''>Select Topic</option>
                         {availableTopics.map(topic => <option key={topic} value={topic}>{topic}</option>)}
                     </select>
                 }
