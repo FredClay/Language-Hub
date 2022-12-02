@@ -1,12 +1,29 @@
 import style from '../../css/SignInPage.module.css';
 
-import { useState } from "react";
+import axios from 'axios';
+
+import { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
+import { loginCall } from '../../context/ApiCalls';
+import { AuthContext } from '../../context/AuthContext';
 
 const SignInPage = () => {
+    const {isFetching, dispatch, error} = useContext(AuthContext);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(isFetching);
+
+    const sendInfo = async () => {
+        setIsLoading(true);
+
+        const userObject = {
+            username: username,
+            password: password
+        };
+        await loginCall(userObject, dispatch);
+        setIsLoading(false);
+    };
 
     return (
         <div className={style.SignInPage}>
@@ -15,12 +32,12 @@ const SignInPage = () => {
                     <p>Sign into your HUBL account here</p>
                 </div>
                 <label htmlFor='userUsername'>Username: </label>
-                <input id='userUsername' type='text' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                <input id='userUsername' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
                 <br />
                 <label htmlFor='userPassword'>Password: </label>
-                <input id='userPassword' type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+                <input id='userPassword' type='text' value={password} onChange={(e) => setPassword(e.target.value)}></input>
                 <div className={style.FormButton}>
-                    <button type='submit'>Sign In</button>
+                    <button type='submit' onClick={() => sendInfo()} disabled={isFetching}>{(isLoading) ? "Loading" : "Sign In"}</button>
                 </div>
             </div>
 

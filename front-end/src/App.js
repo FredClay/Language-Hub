@@ -12,28 +12,31 @@ import CareersPage from './components/pages/CareersPage';
 import SignUpPage from './components/pages/SignUpPage';
 import VocabZone from './components/pages/VocabZone';
 import LessonPage from './components/pages/LessonPage';
+import { AuthContextProvider } from './context/AuthContext';
 
 function App() {
   return (
-    <div className='App'>
-      <BrowserRouter>
-        <Header />
-        <div className='MainBody'>
-          <Routes>
-            <Route path='/' element={<LandingPage />} />
-            <Route path='/signIn' element={<SignInPage />} />
-            <Route path='/signUp' element={<SignUpPage />} />
-            <Route path='/aboutUs' element={<AboutPage />} />
-            <Route path='/lessonZone' element={<LessonPage />} />
-            <Route path='/vocabZone' element={<VocabZone />} />
-            <Route path='/quickVerb' element={<QuickVerbPage />} />
-            <Route path='/hublCareers' element={<CareersPage />} />
-            <Route path='/*' element={<NotFoundPage />} />
-          </Routes>
-        </div>
-        <Footer />
-      </BrowserRouter>
-    </div>
+    <AuthContextProvider>
+      <div className='App'>
+        <BrowserRouter>
+          <Header />
+          <div className='MainBody'>
+            <Routes>
+              <Route path='/' element={<LandingPage />} />
+              <Route path='/signIn' element={<SignInPage />} />
+              <Route path='/signUp' element={<SignUpPage />} />
+              <Route path='/aboutUs' element={<AboutPage />} />
+              <Route path='/lessonZone' element={<LessonPage />} />
+              <Route path='/vocabZone' element={<VocabZone />} />
+              <Route path='/quickVerb' element={<QuickVerbPage />} />
+              <Route path='/hublCareers' element={<CareersPage />} />
+              <Route path='/*' element={<NotFoundPage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </BrowserRouter>
+      </div>
+    </ AuthContextProvider>
   );
 }
 

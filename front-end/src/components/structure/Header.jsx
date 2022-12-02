@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import style from '../../css/Header.module.css';
 
 const Header = () => {
 
+    const { user } = useContext(AuthContext);
     const navigator = useNavigate();
 
     return (
@@ -18,7 +21,7 @@ const Header = () => {
             </div>
             <div className={style.LoginArea}>
                 <div className={style.UserIcon} onClick={() => navigator('/signIn')}>
-                    <p>FC</p>
+                    {(user) ? <p>{user.username}</p> : <p>LOG IN</p>}
                 </div>
             </div>
         </div>
