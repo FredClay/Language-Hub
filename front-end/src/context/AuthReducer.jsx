@@ -6,7 +6,9 @@ export const AuthReducer = (state, action) => {
             return {user: action.payload, isFetching: false, error: false};
         case "loginFailure":
             return {user: null, isFetching: false, error: action.payload};
+        case "logoutSuccess":
+            return {user: null, isFetching: false, error: false};
         default:
-            return state;
+        return state;
     }
 }

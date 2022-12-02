@@ -26,12 +26,20 @@ router.get('/getUser/:_id', (req, res, next) => {
 router.post('/getUser/login', async (req, res, next) => {
     const {username, password} = req.body;
 
+    let validPW = false;
+    
+    try {
     const user = await User.findOne({ username: username });
-    const validPW = await bcrypt.compare(password, user.password);
-
+    validPW = await bcrypt.compare(password, user.password);
     if (validPW) {
         return res.status(200).json(user);
     }
+    }
+    catch (error) {
+        return res.status(404).json({msg: "Invalid Credentials"})
+    }
+    return res.status(404).json({msg: "Invalid Credentials"})
+
 
 
     //TODO

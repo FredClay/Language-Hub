@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    min-height: 70vh;
 }
 
 .SignInForm {
@@ -12,7 +12,7 @@
     padding: 4%;
     padding-top: 3%;
     padding-bottom: 2%;
-    margin-top: 1%;
+    margin-top: 3%;
     border-radius: 15px;
     border: 6px solid black;
     background-color: darkslateblue;
