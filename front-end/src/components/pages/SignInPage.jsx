@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useState, useContext } from "react";
 import { Link } from 'react-router-dom';
-import { loginCall } from '../../context/ApiCalls';
+import { loginCall, logoutUser } from '../../context/ApiCalls';
 import { AuthContext } from '../../context/AuthContext';
 
 const SignInPage = () => {
@@ -36,11 +36,12 @@ const SignInPage = () => {
                 <br />
                 <label htmlFor='userPassword'>Password: </label>
                 <input id='userPassword' type='text' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                {(error) && <p>ERROR DETECTED!</p>}
                 <div className={style.FormButton}>
                     <button type='submit' onClick={() => sendInfo()} disabled={isFetching}>{(isLoading) ? "Loading" : "Sign In"}</button>
                 </div>
             </div>
-
+            <button onClick={() => logoutUser(dispatch)}>Log Out</button>
             <div className={style.SignInExtras}>
                 <p><Link to='/signUp'>Not a member yet? Sign up here!</Link></p>
                 <p><Link to='/forgottenPassword'>Forgotten Password?</Link></p>

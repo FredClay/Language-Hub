@@ -11,5 +11,10 @@ export const loginCall = async (userCredentials, dispatch) => {
     catch (error) {
         return dispatch({type:"loginFailure", payload: error})
     }
+};
 
+export const logoutUser = (dispatch) => {
+    dispatch({type: "logoutSuccess"});
+    localStorage.clear();
+    window.location.reload();
 }
