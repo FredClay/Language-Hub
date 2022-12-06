@@ -25,13 +25,7 @@ const VocabSessionControl = ( props ) => {
         axios
         .get(axiosGetFormatter())
         .then(res => {
-            const words = res.data;            
-            if (category === 'nouns') {
-                for (const word in words) {
-                    let thisWord = words[word];
-                    words[word] = formatWord(thisWord);
-                }
-            }            
+            const words = formatList(res.data);                      
             setWordList(words);
             setCurrentQ(0);
             setFullMarks(false);
@@ -43,6 +37,22 @@ const VocabSessionControl = ( props ) => {
         .catch(() => setGetWordsFailed(true));
     };
 
+    const formatList = (wordArray) => {
+        if (category === 'nouns') {
+            for (const word in wordArray) {
+                let thisWord = wordArray[word];
+                wordArray[word] = formatNoun(thisWord);
+            }
+        };
+        if (toEnglish) {
+            for (const word in wordArray) {
+                let thisWord = wordArray[word];
+                wordArray[word] = flipLanguages(thisWord);
+            }
+        };
+        return wordArray;
+    }
+    
     const axiosGetFormatter = () => {
         let searchString;
         let formatTopic = topic.replace(" ", "");
@@ -55,7 +65,17 @@ const VocabSessionControl = ( props ) => {
         return searchString;
     }
     
-    const formatWord = (inputWord) => {
+    const flipLanguages = (inputWord) => {
+        if (toEnglish) {
+            inputWord = {...inputWord, english: inputWord.translation, translation: inputWord.english, solved: false, passed: false}
+        }
+        else {
+            inputWord = {...inputWord, solved: false, passed: false};
+        }
+        return inputWord;
+    }
+    
+    const formatNoun = (inputWord) => {
         const language = 'german';
         let translatedThe;
         if (language === 'german') {
@@ -76,12 +96,6 @@ const VocabSessionControl = ( props ) => {
         inputWord.english = "the " + inputWord.english;
         inputWord.translation = translatedThe + inputWord.translation;
 
-        if (toEnglish) {
-            inputWord = {...inputWord, english: inputWord.translation, translation: inputWord.english, solved: false, passed: false}
-        }
-        else {
-            inputWord = {...inputWord, solved: false, passed: false};
-        }
         return inputWord;
     }
 

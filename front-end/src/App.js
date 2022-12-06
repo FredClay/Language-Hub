@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthContextProvider } from './context/AuthContext';
 
 import './App.css';
 import Header from './components/structure/Header';
@@ -12,7 +13,7 @@ import CareersPage from './components/pages/CareersPage';
 import SignUpPage from './components/pages/SignUpPage';
 import VocabZone from './components/pages/VocabZone';
 import LessonPage from './components/pages/LessonPage';
-import { AuthContextProvider } from './context/AuthContext';
+import UserArea from './components/pages/UserArea';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path='/' element={<LandingPage />} />
               <Route path='/signIn' element={<SignInPage />} />
               <Route path='/signUp' element={<SignUpPage />} />
+              <Route path='/userArea' element={<UserArea />} />
               <Route path='/aboutUs' element={<AboutPage />} />
               <Route path='/lessonZone' element={<LessonPage />} />
               <Route path='/vocabZone' element={<VocabZone />} />

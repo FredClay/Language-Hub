@@ -80,6 +80,10 @@
     background-color: green;
 }
 
+.FormButton > button:disabled {
+    background-color: grey;
+}
+
 .SignInExtras {
     text-align: center;
 }

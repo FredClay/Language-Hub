@@ -26,8 +26,6 @@ router.get('/getUser/:_id', (req, res, next) => {
 router.post('/getUser/login', async (req, res, next) => {
     const {username, password} = req.body;
 
-    let validPW = false;
-    
     try {
     const user = await User.findOne({ username: username });
     validPW = await bcrypt.compare(password, user.password);

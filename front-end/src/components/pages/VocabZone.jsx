@@ -66,7 +66,7 @@ const VocabZone = () => {
                         <h3>English</h3>
                         <label className={style.switch}>
                             <input type='checkbox'></input>
-                            <span className={[style.slider, style.round].join(" ")} onClick={() => setToEnglish(!toEnglish)}></span>
+                            <span className={[style.slider, style.round].join(" ")} onClick={() => {setToEnglish(!toEnglish); console.log(toEnglish);}}></span>
                         </label>
                         <h3>German</h3>
                     </div>

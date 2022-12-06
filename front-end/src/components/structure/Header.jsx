@@ -20,14 +20,19 @@ const Header = () => {
                 <button onClick={() => navigator("/aboutUs")}>About HUBL</button>
             </div>
             <div className={style.LoginArea}>
-                <div className={style.LoginIcon} onClick={() => navigator('/signIn')}>
-                    {(!user) && <img alt='noUser' src='./DefaultLoginSymbolSquare.png' onClick={() => navigator('/')}/>}
-                    {(user) && <div className={style.UserIcon}>
-                                <h1>{(user.firstName[0] + user.lastName[0]).toUpperCase()}</h1>
-                               </div>}
-                </div> 
-            </div>
+                {(user) && 
+                <div className={style.LoginIcon} onClick={() => navigator('/userArea')}>
+                    <div className={style.UserIcon}>
+                        <h1>{(user.firstName[0] + user.lastName[0]).toUpperCase()}</h1>
+                    </div>
+                </div>}
+                {(!user) && 
+                    <div className={style.LoginIcon} onClick={() => navigator('/signIn')}>
+                        <img alt='noUser' src='./DefaultLoginSymbolSquare.png' onClick={() => navigator('/')}/>
+                    </div>}
+            </div> 
         </div>
+
     )
 
 }
