@@ -1,14 +1,14 @@
 import style from '../../css/SignInPage.module.css';
 
-import axios from 'axios';
-
 import { useState, useContext } from "react";
-import { Link } from 'react-router-dom';
-import { loginCall, logoutUser } from '../../context/ApiCalls';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginCall } from '../../context/ApiCalls';
 import { AuthContext } from '../../context/AuthContext';
 
 const SignInPage = () => {
     const {isFetching, dispatch, error} = useContext(AuthContext);
+
+    const navigator = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -23,6 +23,7 @@ const SignInPage = () => {
         };
         await loginCall(userObject, dispatch);
         setIsLoading(false);
+        navigator('/userArea');
     };
 
     return (
@@ -41,7 +42,6 @@ const SignInPage = () => {
                     <button type='submit' onClick={() => sendInfo()} disabled={isFetching}>{(isLoading) ? "Loading" : "Sign In"}</button>
                 </div>
             </div>
-            <button onClick={() => logoutUser(dispatch)}>Log Out</button>
             <div className={style.SignInExtras}>
                 <p><Link to='/signUp'>Not a member yet? Sign up here!</Link></p>
                 <p><Link to='/forgottenPassword'>Forgotten Password?</Link></p>
