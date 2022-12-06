@@ -14,6 +14,7 @@ import SignUpPage from './components/pages/SignUpPage';
 import VocabZone from './components/pages/VocabZone';
 import LessonPage from './components/pages/LessonPage';
 import UserArea from './components/pages/UserArea';
+import LessonPrinter from './components/extras/LessonPrinter';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path='/userArea' element={<UserArea />} />
               <Route path='/aboutUs' element={<AboutPage />} />
               <Route path='/lessonZone' element={<LessonPage />} />
+              <Route path='/lesson/:id' element={<LessonPrinter />} />
               <Route path='/vocabZone' element={<VocabZone />} />
               <Route path='/quickVerb' element={<QuickVerbPage />} />
               <Route path='/hublCareers' element={<CareersPage />} />
