@@ -17,6 +17,8 @@
 .ButtonAndHeading {
     display: flex;
     width: 90%;
+    border-bottom: 3px solid black;
+    margin-bottom: 2%;
 }
 
 .ButtonAndHeading > h1 {
@@ -24,7 +26,6 @@
     font-weight: 600;
     margin-left: 5%;
     color: aqua;
-    justify-self: center;
 }
 
 .ButtonAndHeading > button {
@@ -43,3 +44,36 @@
     background-color: black;
 }
 
+.BodyComponents {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    align-items: center;
+    text-align: center;
+}
+
+.BodyComponents > h2 {
+    color: aliceblue;
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 2%;
+}
+
+.BodyComponents > h3 {
+    color: lightgrey;
+    font-size: 1.4rem;
+    margin: 0;
+    margin-bottom: 1%;
+}
+
+.ExampleBlock {
+    margin-top: 1%;
+    margin-bottom: 7%;
+}
+
+.ExampleBlock > h4 {
+    color: lightskyblue;
+    font-size: 1.3rem;
+    margin: 0;
+    margin-bottom: 2%;
+}

@@ -1,16 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import style from '../../css/AvailableLessons.module.css';
 
 const AvailableLessons = ( {lessonInfo, lessonStarter} ) => {
 
-    const { title, level, description } = lessonInfo;
+    const { _id, title, difficulty, summary } = lessonInfo;
 
     return(
-        <div className={style.LessonDisplay} onClick={() => lessonStarter()}>
+        <div className={style.LessonDisplay} onClick={() => lessonStarter(_id)}>
             <div className={style.NameAndDiff}>
                 <h1>{title}</h1>
-                <h2>{level.toUpperCase()}</h2>
+                <h2>{difficulty.toUpperCase()}</h2>
                 </div>
-            <p>{description}</p>
+            <p>{summary}</p>
         </div>
     );
 
