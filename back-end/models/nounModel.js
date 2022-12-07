@@ -7,7 +7,6 @@ const NounSchema = new Schema({
     english: {
         type: String,
         require: true,
-        default: "BANANA"
     },
     translation: {
         type: String,
@@ -25,6 +24,10 @@ const NounSchema = new Schema({
 
 const NounCategorySchema = new Schema({
     topicName: {
+        type: String,
+        require: true,
+    },
+    formattedName: {
         type: String,
         require: true,
     },
