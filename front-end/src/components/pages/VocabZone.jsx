@@ -4,13 +4,14 @@ import { useState } from 'react';
 
 import VocabSessionControl from '../extras/VocabSessionControl';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 const VocabZone = () => {
 
     const availableCategories = ['Adjectives', 'Nouns', 'Verbs'];
-    const availableTopics = ['Travel', 'At Home'];
     const availableQuantities = ['2', '5', '10', '15'];
 
+    const [availableTopics, setAvailableTopics] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedQuantity, setSelectedQuantity] = useState('');
     const [displayTopicBox, setDisplayTopicBox] = useState(false);
@@ -18,6 +19,13 @@ const VocabZone = () => {
     const [toEnglish, setToEnglish] = useState(true);
     const [chosen, setChosen] = useState(false);
     const [invalidSelection, setInvalidSelection] = useState(false)
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:5000/nouns/getTopics')
+            .then((res) => {setAvailableTopics(res.data)})
+            .catch((err) => console.log(err));
+    }, [displayTopicBox])
 
     const pressedBegin = () => {
         if (!selectedCategory || !selectedQuantity || (displayTopicBox && !selectedTopic)) {
@@ -51,9 +59,9 @@ const VocabZone = () => {
                     {availableCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
                 </select>
                 {(displayTopicBox) && 
-                    <select id='chooseQuantity' className={style.optionalSelection} onChange={(e) => setSelectedTopic(e.target.value)}>
+                    <select id='chooseTopic' className={style.optionalSelection} onChange={(e) => setSelectedTopic(e.target.value)}>
                         <option value=''>Select Topic</option>
-                        {availableTopics.map(topic => <option key={topic} value={topic}>{topic}</option>)}
+                        {availableTopics.map(topic => <option key={topic.topicName} value={topic.topicName}>{topic.topicName}</option>)}
                     </select>
                 }
                 <select id='chooseQuantity' onChange={(e) => setSelectedQuantity(e.target.value)}>

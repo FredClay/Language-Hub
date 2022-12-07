@@ -2,12 +2,19 @@ const router = require('express').Router();
 
 const {Noun, NounCategory} = require('../models/nounModel');
 
+router.get('/getTopics', (req, res, next) => {
+    NounCategory.find({}, {"topicName": true, "_id": false})
+    .then((result) => res.status(200).json(result))
+    .catch((err) => next());
+})
+
 router.post('/createTopic/:topicName', (req, res, next) => {
     const { topicName } = req.params;
+    const searchName = topicName.replace(" ", "").toLowerCase();
     
-    NounCategory.create({topicName: topicName})
+    NounCategory.create({topicName: topicName, searchName: searchName})
         .then((result) => res.status(201).json(result))
-        .catch((err) => next({status: 404, msg: "That topic doesn't exist."}));
+        .catch((err) => next());
 })
 
 router.put('/addNoun/:topic', (req, res, next) => {    
@@ -18,7 +25,7 @@ router.put('/addNoun/:topic', (req, res, next) => {
     NounCategory.findOneAndUpdate({topicName: topic}, 
         { "$push": {"theNouns": myNoun}})
         .then((result) => res.status(201).json(myNoun))
-        .catch((err) => next(err));
+        .catch((err) => next({status: 404, msg: "That topic doesn't exist."}));
 });
 
 router.get('/getNoun/:_id', (req, res, next) => {
@@ -60,20 +67,6 @@ router.get('/getSelection/:topic/:count', (req, res, next) => {
     ])
         .then((result) => myArray = result.map((thisOne) => thisOne.theNouns))
         .then((result) => res.status(200).json(result))
-        .catch((err) => next(err));
-});
-
-router.delete('/deleteNoun/:_id', (req, res, next) => {
-    const { _id } = req.params;
-
-    Noun.findOneAndDelete({ _id: _id})
-        .then((result) => res.status(204).json(result))
-        .catch((err) => next(err));
-});
-
-router.delete('/deleteAllNouns', (req, res, next) => {
-    NounCategory.deleteMany({})
-        .then((result) => res.status(204).json(result))
         .catch((err) => next(err));
 });
 
